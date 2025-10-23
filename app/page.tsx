@@ -1,25 +1,24 @@
-import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import Image from "next/image"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Calm Your Agent - Rate Limiting Protocol",
+  title: "Calm Your Requests - Rate Limiting Protocol",
   description: "A credible protocol for autonomous agents and web services to negotiate graceful throttling and cooldown periods using HTTP 420.",
   keywords: ["x420", "HTTP 420", "rate limiting", "autonomous systems", "AI agents", "calm protocol", "x402"],
-  authors: [{ name: "Calm Your Agent" }],
+  authors: [{ name: "Calm Your Requests" }],
   openGraph: {
-    title: "Calm Your Agent",
+    title: "Calm Your Requests",
     description: "Rate limiting for AI agents via HTTP 420.",
     url: "https://x420.dev",
-    siteName: "Calm Your Agent",
+    siteName: "Calm Your Requests",
     images: [
       {
         url: "/cover.png",
         width: 1200,
         height: 630,
-        alt: "Calm Your Agent",
+        alt: "Calm Your Requests",
       },
     ],
     locale: "en_US",
@@ -27,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Calm Your Agent",
+    title: "Calm Your Requests",
     description: "Rate limiting for AI agents via HTTP 420.",
     images: ["/cover.png"],
   },
@@ -46,7 +45,7 @@ export default function WhitepaperPage() {
             <div className="w-full max-w-2xl">
               <Image
                 src="/cover.png"
-                alt="Calm Your Agent"
+                alt="Calm Your Requests"
                 width={1200}
                 height={900}
                 className="w-full h-auto"
@@ -54,15 +53,6 @@ export default function WhitepaperPage() {
               />
             </div>
             <div className="space-y-6 max-w-3xl">
-              <Badge className="bg-primary text-primary-foreground text-sm px-5 py-2 font-semibold">
-                Open Standard Proposal
-              </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold text-balance leading-tight">
-                Calm Your Agent
-              </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Rate limiting for AI agents via HTTP <span className="text-primary font-bold">420</span>
-              </p>
               <div className="flex items-center justify-center gap-6">
                 <button className="px-10 py-5 bg-primary text-primary-foreground font-bold text-2xl rounded-xl border-3 border-primary shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50 hover:bg-transparent hover:text-primary transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 active:scale-95">
                   Puff
@@ -81,7 +71,7 @@ export default function WhitepaperPage() {
         {/* Overview */}
         <section className="mb-16">
           <p className="text-xl leading-relaxed text-foreground/90 mb-6">
-            Just as x402 standardized payments for autonomous agents via HTTP 402, <span className="text-primary font-bold">Calm Your Agent</span> repurposes HTTP <span className="text-primary font-bold">420</span> ("<span className="text-accent font-semibold">Enhance Your Calm</span>") to create a credible protocol for graceful rate limiting and throttling. This standard enables AI agents and web services to negotiate cooldown periods automatically.
+            Just as x402 standardized payments for autonomous agents via HTTP 402, <span className="text-primary font-bold">Calm Your Requests</span> repurposes HTTP <span className="text-primary font-bold">420</span> ("<span className="text-accent font-semibold">Enhance Your Calm</span>") to create a credible protocol for graceful rate limiting and throttling. This standard enables AI agents and web services to negotiate cooldown periods automatically.
           </p>
           <Card className="p-6 bg-gradient-to-br from-accent/15 to-secondary/15 border-2 border-accent/50">
             <p className="text-base italic">
@@ -135,7 +125,7 @@ Calm-Token: abcd1234efgh5678`}
         {/* Closing */}
         <Card className="p-8 bg-gradient-to-br from-primary/15 via-accent/15 to-secondary/15 border-4 border-primary/50">
           <p className="text-lg leading-relaxed text-center text-balance font-medium">
-            <span className="text-primary font-bold">Calm Your Agent</span> complements x402 by adding a time-based negotiation layer. Together, they let agents choose whether to spend currency or time. Sometimes the optimal solution is to{" "}
+            <span className="text-primary font-bold">Calm Your Requests</span> complements x402 by adding a time-based negotiation layer. Together, they let agents choose whether to spend currency or time. Sometimes the optimal solution is to{" "}
             <span className="text-accent font-semibold">enhance your calm</span>.
           </p>
           <div className="text-center mt-6 text-5xl font-bold text-primary opacity-50">420</div>
@@ -146,7 +136,7 @@ Calm-Token: abcd1234efgh5678`}
       <footer className="border-t-2 border-primary/50 mt-16 py-8 bg-muted/30">
         <div className="container mx-auto px-4 max-w-4xl">
           <p className="text-center text-muted-foreground text-sm">
-            <span className="text-primary font-bold">Calm Your Agent</span> • HTTP{" "}
+            <span className="text-primary font-bold">Calm Your Requests</span> • HTTP{" "}
             <span className="font-mono font-bold">420</span> "
             <span className="text-accent font-semibold">Enhance Your Calm</span>" • Complementary to x402
           </p>
