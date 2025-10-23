@@ -1,0 +1,56 @@
+import { CdpClient } from "@coinbase/cdp-sdk";
+import { type Address, encodeFunctionData, erc20Abi, maxUint256 } from "viem";
+import { PERMIT2_ADDRESS } from "@/lib/constants";
+
+const CDP_API_KEY_ID = process.env.CDP_API_KEY_ID;
+const CDP_API_KEY_SECRET = process.env.CDP_API_KEY_SECRET;
+const CDP_WALLET_SECRET = process.env.CDP_WALLET_SECRET;
+
+export const cdp = new CdpClient({
+  apiKeyId: CDP_API_KEY_ID,
+  apiKeySecret: CDP_API_KEY_SECRET,
+  walletSecret: CDP_WALLET_SECRET,
+});
+
+export const getX420SmartAccount = async () => {
+  const resourceWallet = await cdp.evm.getOrCreateAccount({
+    name: "x420-main",
+  });
+
+  const resourceSmartAccount = await cdp.evm.getOrCreateSmartAccount({
+    owner: resourceWallet,
+    name: "x420-main",
+  });
+
+  return resourceSmartAccount;
+};
+
+export const approvePermit2 = async ({
+  smartAccount,
+  tokenAddress,
+}: {
+  smartAccount: Awaited<ReturnType<typeof getX420SmartAccount>>;
+  tokenAddress: Address;
+}) => {
+  const data = encodeFunctionData({
+    abi: erc20Abi,
+    functionName: "approve",
+    args: [PERMIT2_ADDRESS, maxUint256],
+  });
+
+  const userOpResult = await smartAccount.sendUserOperation({
+    network: "base",
+    calls: [{ to: tokenAddress, data, value: 0n }],
+    paymasterUrl: process.env.CDP_BASE_RPC_URL,
+  });
+
+  const receipt = await smartAccount.waitForUserOperation({
+    userOpHash: userOpResult.userOpHash,
+  });
+
+  const txHash = receipt.status === "complete" ? receipt.transactionHash : null;
+
+  console.log("approvePermit2 tx hash", txHash);
+
+  return txHash;
+};
