@@ -12,10 +12,10 @@ export const metadata: Metadata = {
     "An open standard for rate limiting and graceful throttling in autonomous systems",
   generator: "x420.dev",
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
+    icon: [{ url: "/favicon.ico", sizes: "any" }],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/site.webmanifest",
 };
