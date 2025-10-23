@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Calm Your Requests - Rate Limiting Protocol",
   description:
     "An open standard for rate limiting and graceful throttling in autonomous systems",
-  generator: "v0.app",
+  generator: "x420.dev",
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
