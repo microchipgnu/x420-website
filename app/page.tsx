@@ -63,6 +63,14 @@ export default function WhitepaperPage() {
               <p className="text-xl text-muted-foreground leading-relaxed">
                 Rate limiting for AI agents via HTTP <span className="text-primary font-bold">420</span>
               </p>
+              <div className="flex items-center justify-center gap-6">
+                <button className="px-10 py-5 bg-primary text-primary-foreground font-bold text-2xl rounded-xl border-3 border-primary shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/50 hover:bg-transparent hover:text-primary transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 active:scale-95">
+                  Puff
+                </button>
+                <button disabled className="px-10 py-5 bg-muted text-muted-foreground font-bold text-2xl rounded-xl border-3 border-muted shadow-lg opacity-50 cursor-not-allowed transition-all duration-300">
+                  Pass
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -122,41 +130,6 @@ Host: example.com
 Calm-Token: abcd1234efgh5678`}
             </pre>
           </Card>
-        </section>
-
-        <Separator className="my-12 bg-primary/40" />
-
-        {/* Benefits */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-6">
-            Benefits
-          </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="p-6 border-2 border-primary/50 bg-gradient-to-br from-primary/10 to-transparent">
-              <h3 className="text-xl font-semibold mb-3">Standardization</h3>
-              <p className="text-muted-foreground">
-                Universal language for rate limiting across all services
-              </p>
-            </Card>
-            <Card className="p-6 border-2 border-accent/50 bg-gradient-to-br from-accent/10 to-transparent">
-              <h3 className="text-xl font-semibold mb-3">Flexibility</h3>
-              <p className="text-muted-foreground">
-                Pay with time (wait) or money (via x402) to bypass limits
-              </p>
-            </Card>
-            <Card className="p-6 border-2 border-secondary/50 bg-gradient-to-br from-secondary/10 to-transparent">
-              <h3 className="text-xl font-semibold mb-3">Graceful</h3>
-              <p className="text-muted-foreground">
-                Automated handling without alienating clients
-              </p>
-            </Card>
-            <Card className="p-6 border-2 border-primary/50 bg-gradient-to-br from-primary/10 to-transparent">
-              <h3 className="text-xl font-semibold mb-3">Mindful</h3>
-              <p className="text-muted-foreground">
-                Machine-readable calm instructions for stable interactions
-              </p>
-            </Card>
-          </div>
         </section>
 
         {/* Closing */}
