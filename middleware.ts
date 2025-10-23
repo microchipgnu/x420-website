@@ -13,6 +13,9 @@ export const middleware = paymentMiddleware(
       network: "base",
       config: {
         description: "Buy $1 USDC of x420 token",
+        discoverable: true,
+        resource: "https://x420.dev/api/puff",
+        mimeType: "application/json",
       },
     },
   },
