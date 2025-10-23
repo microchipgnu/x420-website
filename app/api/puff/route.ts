@@ -37,6 +37,7 @@ export async function GET(req: NextRequest) {
   });
 
   if (!swapQuote.liquidityAvailable) {
+    console.error("Swap liquidity not available");
     return NextResponse.json(
       { message: "Swap liquidity not available" },
       { status: 400 }
@@ -59,6 +60,7 @@ export async function GET(req: NextRequest) {
   const swapTransactionHash =
     receipt.status === "complete" ? receipt.transactionHash : null;
 
+  console.log("swap tx hash", swapTransactionHash);
   const quoteToAmount = swapQuote.toAmount;
 
   const sendResult = await x420SmartAccount.transfer({
@@ -75,6 +77,7 @@ export async function GET(req: NextRequest) {
 
   const sendTransactionHash =
     sendReceipt.status === "complete" ? sendReceipt.transactionHash : null;
+
   console.log("send tx hash", sendTransactionHash);
 
   return NextResponse.json({
