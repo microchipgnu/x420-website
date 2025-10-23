@@ -12,7 +12,7 @@ export const middleware = paymentMiddleware(
       price: "$1",
       network: "base",
       config: {
-        description: "Pay $1 USDC to buy discounted x420",
+        description: "Buy $1 USDC of x420 token",
       },
     },
   },
