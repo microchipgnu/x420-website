@@ -19,6 +19,17 @@ export const middleware = paymentMiddleware(
         maxTimeoutSeconds: 120,
       },
     },
+    "/api/puff/5": {
+      price: "$5",
+      network: "base",
+      config: {
+        description: "Buy $1 USDC of x420 token",
+        discoverable: true,
+        resource: "https://x420.dev/api/puff/5",
+        mimeType: "application/json",
+        maxTimeoutSeconds: 120,
+      },
+    },
   },
   {
     url: NEXT_PUBLIC_FACILITATOR_URL as Resource,
