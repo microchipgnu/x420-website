@@ -7,7 +7,8 @@
     "dev": "next dev",
     "start": "next start",
     "check": "ultracite check",
-    "fix": "ultracite fix"
+    "fix": "ultracite fix",
+    "client": "bun run scripts/client.ts"
   },
   "dependencies": {
     "@coinbase/cdp-sdk": "^1.38.4",
@@ -44,6 +45,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.4",
+    "dotenv": "^17.2.3",
     "embla-carousel-react": "8.5.1",
     "geist": "1.5.1",
     "input-otp": "1.4.1",
@@ -61,6 +63,8 @@
     "vaul": "^0.9.9",
     "viem": "^2.38.4",
     "x402": "^0.6.6",
+    "x402-axios": "^0.6.6",
+    "x402-fetch": "^0.6.6",
     "x402-next": "^0.6.5"
   },
   "devDependencies": {

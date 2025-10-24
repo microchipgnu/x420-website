@@ -51,14 +51,14 @@ export const deployClankerToken = async ({
           recipient: deployerAddress,
           admin: deployerAddress,
           // In bps. 80% of reward
-          bps: 8_000,
+          bps: 8000,
           token: "Paired",
         },
         {
           recipient: x420SmartAccount.address,
           admin: x420SmartAccount.address,
           // In bps. 20% of reward
-          bps: 2_000,
+          bps: 2000,
           token: "Paired",
         },
       ],

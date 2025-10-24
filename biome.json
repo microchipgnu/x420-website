@@ -7,7 +7,14 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**/*", "!.next", "!dist", "!build", "!components/ui", "!app/globals.css"]
+    "includes": [
+      "**/*",
+      "!.next",
+      "!dist",
+      "!build",
+      "!components/ui",
+      "!app/globals.css"
+    ]
   },
   "formatter": {
     "enabled": true,

@@ -112,7 +112,7 @@ export const proxy = paymentMiddleware(
     appName: "x420",
     appLogo: "/logo-200x200.png",
     cdpClientKey: CDP_CLIENT_API_KEY,
-  },
+  }
 );
 
 // Configure which paths the middleware should run on
