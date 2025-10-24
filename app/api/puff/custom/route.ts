@@ -1,12 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { type Address, formatUnits, parseUnits } from "viem";
 import { getX420SmartAccount } from "@/lib/cdp";
-import {
-  USDC_DECIMALS,
-  USDC_TOKEN_ADDRESS,
-  X420_DECIMALS,
-  X420_TOKEN_ADDRESS,
-} from "@/lib/constants";
+import { USDC_DECIMALS, USDC_TOKEN_ADDRESS, X420_DECIMALS, X420_TOKEN_ADDRESS } from "@/lib/constants";
 import { decodeX402PaymentResponse } from "@/lib/utils";
 
 const CDP_BASE_RPC_URL = process.env.CDP_BASE_RPC_URL;
@@ -31,10 +26,7 @@ export async function GET(req: NextRequest) {
     }
   } catch (error) {
     console.error("Error parsing amount parameter:", error);
-    return NextResponse.json(
-      { message: "Invalid amount format" },
-      { status: 400 }
-    );
+    return NextResponse.json({ message: "Invalid amount format" }, { status: 400 });
   }
 
   // Use custom amount if provided, otherwise default to $5 USDC
@@ -42,10 +34,7 @@ export async function GET(req: NextRequest) {
 
   // Validate minimum amount (must be > 0)
   if (buyAmount <= 0n) {
-    return NextResponse.json(
-      { message: "Invalid amount: must be greater than 0" },
-      { status: 400 }
-    );
+    return NextResponse.json({ message: "Invalid amount: must be greater than 0" }, { status: 400 });
   }
 
   // Check for payment - this route handles its own payment verification
@@ -79,16 +68,14 @@ export async function GET(req: NextRequest) {
                   amount: {
                     type: "string",
                     required: false,
-                    description:
-                      "Amount in USDC to spend (e.g., '10', '10.5'). Defaults to '5' if not provided.",
+                    description: "Amount in USDC to spend (e.g., '10', '10.5'). Defaults to '5' if not provided.",
                   },
                 },
                 headerFields: {
                   "X-PAYMENT-RESPONSE": {
                     type: "string",
                     required: true,
-                    description:
-                      "x402 payment response header containing payment proof",
+                    description: "x402 payment response header containing payment proof",
                   },
                 },
               },
@@ -103,7 +90,7 @@ export async function GET(req: NextRequest) {
           },
         ],
       },
-      { status: 402 }
+      { status: 402 },
     );
   }
 
@@ -122,10 +109,7 @@ export async function GET(req: NextRequest) {
 
   if (!swapQuote.liquidityAvailable) {
     console.error("Swap liquidity not available");
-    return NextResponse.json(
-      { message: "Swap liquidity not available" },
-      { status: 400 }
-    );
+    return NextResponse.json({ message: "Swap liquidity not available" }, { status: 400 });
   }
 
   const swapResult = await x420SmartAccount.swap({
@@ -141,8 +125,7 @@ export async function GET(req: NextRequest) {
     userOpHash: swapResult.userOpHash,
   });
 
-  const swapTransactionHash =
-    receipt.status === "complete" ? receipt.transactionHash : null;
+  const swapTransactionHash = receipt.status === "complete" ? receipt.transactionHash : null;
 
   console.log("swap tx hash", swapTransactionHash);
   const quoteToAmount = swapQuote.toAmount;
@@ -159,8 +142,7 @@ export async function GET(req: NextRequest) {
     userOpHash: sendResult.userOpHash,
   });
 
-  const sendTransactionHash =
-    sendReceipt.status === "complete" ? sendReceipt.transactionHash : null;
+  const sendTransactionHash = sendReceipt.status === "complete" ? sendReceipt.transactionHash : null;
 
   console.log("send tx hash", sendTransactionHash);
 
