@@ -23,7 +23,7 @@ export const middleware = paymentMiddleware(
       price: "$5",
       network: "base",
       config: {
-        description: "Buy $1 USDC of x420 token",
+        description: "Buy $5 USDC of x420 token",
         discoverable: true,
         resource: "https://x420.dev/api/puff/5",
         mimeType: "application/json",
@@ -43,5 +43,5 @@ export const middleware = paymentMiddleware(
 
 // Configure which paths the middleware should run on
 export const config = {
-  matcher: ["/api/puff"],
+  matcher: ["/api/puff/:path*"],
 };
