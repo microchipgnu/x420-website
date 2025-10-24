@@ -14,25 +14,25 @@ const RESOURCE_WALLET_ADDRESS = process.env.RESOURCE_WALLET_ADDRESS as Address;
 
 export const maxDuration = 120;
 
-export async function POST(req: NextRequest) {
-  // Extract custom amount from request body first
+export async function GET(req: NextRequest) {
+  // Extract custom amount from query parameters
   let customAmount: bigint | null = null;
   let amountString: string | undefined;
 
   try {
-    const body = await req.json();
-    amountString = body.amount;
+    const { searchParams } = new URL(req.url);
+    amountString = searchParams.get("amount") || undefined;
 
     if (amountString) {
       // Parse the amount string to USDC (6 decimals)
       // Handles strings like "10", "10.5", "0.5" etc.
       customAmount = parseUnits(amountString, USDC_DECIMALS);
-      console.log("Using custom amount from body:", amountString, "USDC");
+      console.log("Using custom amount from query:", amountString, "USDC");
     }
   } catch (error) {
-    console.error("Error parsing request body:", error);
+    console.error("Error parsing amount parameter:", error);
     return NextResponse.json(
-      { message: "Invalid request body or amount format" },
+      { message: "Invalid amount format" },
       { status: 400 }
     );
   }
@@ -48,11 +48,11 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Check for payment - if no payment, return 402 with payment requirements
+  // Check for payment - this route handles its own payment verification
   const xPaymentResponse = req.headers.get("x-payment-response");
 
   if (!xPaymentResponse) {
-    // Return x402 response with payment requirements
+    // Return x402 response with dynamic payment requirements
     return NextResponse.json(
       {
         x402Version: 1,
@@ -74,9 +74,8 @@ export async function POST(req: NextRequest) {
             outputSchema: {
               input: {
                 type: "http",
-                method: "POST",
-                bodyType: "json",
-                bodyFields: {
+                method: "GET",
+                queryParams: {
                   amount: {
                     type: "string",
                     required: false,
