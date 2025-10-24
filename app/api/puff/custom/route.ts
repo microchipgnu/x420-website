@@ -71,6 +71,36 @@ export async function POST(req: NextRequest) {
             extra: {
               customAmount: amountString || "5",
             },
+            outputSchema: {
+              input: {
+                type: "http",
+                method: "POST",
+                bodyType: "json",
+                bodyFields: {
+                  amount: {
+                    type: "string",
+                    required: false,
+                    description:
+                      "Amount in USDC to spend (e.g., '10', '10.5'). Defaults to '5' if not provided.",
+                  },
+                },
+                headerFields: {
+                  "X-PAYMENT-RESPONSE": {
+                    type: "string",
+                    required: true,
+                    description:
+                      "x402 payment response header containing payment proof",
+                  },
+                },
+              },
+              output: {
+                message: "string",
+                swapTransactionHash: "string",
+                sendTransactionHash: "string",
+                x420TokensReceived: "string",
+                usdcAmountPaid: "string",
+              },
+            },
           },
         ],
       },
