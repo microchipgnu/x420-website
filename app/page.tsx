@@ -28,13 +28,7 @@ export default function WhitepaperPage() {
         <div className="container mx-auto max-w-6xl px-4 py-16 md:py-24">
           <div className="flex flex-col items-center gap-12 text-center">
             <div className="w-full max-w-2xl">
-              <Image
-                alt="Calm Your Requests"
-                height={900}
-                priority
-                src="/cover.png"
-                width={1200}
-              />
+              <Image alt="Calm Your Requests" height={900} priority src="/cover.png" width={1200} />
             </div>
             <div className="max-w-3xl space-y-6">
               <div className="flex flex-col items-center gap-6">
@@ -72,22 +66,18 @@ export default function WhitepaperPage() {
         {/* Overview */}
         <section className="mb-16">
           <p className="mb-6 text-foreground/90 text-xl leading-relaxed">
-            Just as x402 standardized payments for autonomous agents via HTTP
-            402,{" "}
-            <span className="font-bold text-primary">Calm Your Requests</span>{" "}
-            repurposes HTTP <span className="font-bold text-primary">420</span>{" "}
+            Just as x402 standardized payments for autonomous agents via HTTP 402,{" "}
+            <span className="font-bold text-primary">Calm Your Requests</span> repurposes HTTP{" "}
+            <span className="font-bold text-primary">420</span>{" "}
             <span className="font-semibold text-accent">Enhance Your Calm</span>
-            to create a credible protocol for graceful rate limiting and
-            throttling. This standard enables AI agents and web services to
-            negotiate cooldown periods automatically.
+            to create a credible protocol for graceful rate limiting and throttling. This standard enables AI agents and
+            web services to negotiate cooldown periods automatically.
           </p>
-          <Card className="border-2 border-accent/50 bg-gradient-to-br from-accent/15 to-secondary/15 p-6">
+          <Card className="border-2 border-accent/50 bg-linear-to-br from-accent/15 to-secondary/15 p-6">
             <p className="text-base italic">
-              <span className="font-bold text-accent text-lg">Fun Fact:</span>{" "}
-              Twitter introduced the nonstandard HTTP{" "}
-              <span className="font-bold font-mono text-primary">420</span>{" "}
-              response in its early API. The phrase comes from the 1993 film{" "}
-              <span className="italic">Demolition Man</span>.
+              <span className="font-bold text-accent text-lg">Fun Fact:</span> Twitter introduced the nonstandard HTTP{" "}
+              <span className="font-bold font-mono text-primary">420</span> response in its early API. The phrase comes
+              from the 1993 film <span className="italic">Demolition Man</span>.
             </p>
           </Card>
         </section>
@@ -99,8 +89,7 @@ export default function WhitepaperPage() {
           <h2 className="mb-6 font-bold text-3xl">How It Works</h2>
           <p className="mb-8 text-lg leading-relaxed">
             When a client exceeds rate limits, the server responds with HTTP{" "}
-            <span className="font-bold font-mono text-primary">420</span>{" "}
-            including structured calm instructions:
+            <span className="font-bold font-mono text-primary">420</span> including structured calm instructions:
           </p>
 
           <Card className="mb-8 border-2 border-primary/50 bg-card">
@@ -137,18 +126,13 @@ Calm-Token: abcd1234efgh5678`}
         <Separator className="my-12 bg-primary/40" />
 
         {/* Closing */}
-        <Card className="border-4 border-primary/50 bg-gradient-to-br from-primary/15 via-accent/15 to-secondary/15 p-8">
+        <Card className="border-4 border-primary/50 bg-linear-to-br from-primary/15 via-accent/15 to-secondary/15 p-8">
           <p className="text-balance text-center font-medium text-lg leading-relaxed">
-            <span className="font-bold text-primary">Calm Your Requests</span>{" "}
-            complements x402 by adding a time-based negotiation layer. Together,
-            they let agents choose whether to spend currency or time. Sometimes
-            the optimal solution is to{" "}
-            <span className="font-semibold text-accent">enhance your calm</span>
-            .
+            <span className="font-bold text-primary">Calm Your Requests</span> complements x402 by adding a time-based
+            negotiation layer. Together, they let agents choose whether to spend currency or time. Sometimes the optimal
+            solution is to <span className="font-semibold text-accent">enhance your calm</span>.
           </p>
-          <div className="py-2 text-center font-bold text-5xl text-primary opacity-50">
-            420
-          </div>
+          <div className="py-2 text-center font-bold text-5xl text-primary opacity-50">420</div>
         </Card>
       </main>
 
@@ -156,10 +140,9 @@ Calm-Token: abcd1234efgh5678`}
       <footer className="mt-16 border-primary/50 border-t-2 bg-muted/30 py-8">
         <div className="container mx-auto flex max-w-4xl flex-col items-center gap-4 px-4 text-sm">
           <p className="text-center text-muted-foreground">
-            <span className="font-bold text-primary">Calm Your Requests</span> •
-            HTTP <span className="font-bold font-mono">420</span> "
-            <span className="font-semibold text-accent">Enhance Your Calm</span>
-            " • Complementary to x402
+            <span className="font-bold text-primary">Calm Your Requests</span> • HTTP{" "}
+            <span className="font-bold font-mono">420</span> "
+            <span className="font-semibold text-accent">Enhance Your Calm</span>" • Complementary to x402
           </p>
           <nav aria-label="External links">
             <ul className="flex flex-wrap items-center justify-center gap-4 text-muted-foreground text-sm">

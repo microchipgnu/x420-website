@@ -8,10 +8,7 @@ export const publicClient = createPublicClient({
   transport: http(CDP_BASE_RPC_URL),
 });
 
-export const getExplorerUrl = (
-  hex: string,
-  options?: { type: "tx" | "address" }
-): string => {
+export const getExplorerUrl = (hex: string, options?: { type: "tx" | "address" }): string => {
   const linkType = options?.type || "tx";
   return `${base.blockExplorers.default.url}/${linkType}/${hex}`;
 };

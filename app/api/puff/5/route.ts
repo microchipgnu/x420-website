@@ -1,12 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { type Address, formatUnits, parseUnits } from "viem";
 import { getX420SmartAccount } from "@/lib/cdp";
-import {
-  USDC_DECIMALS,
-  USDC_TOKEN_ADDRESS,
-  X420_DECIMALS,
-  X420_TOKEN_ADDRESS,
-} from "@/lib/constants";
+import { USDC_DECIMALS, USDC_TOKEN_ADDRESS, X420_DECIMALS, X420_TOKEN_ADDRESS } from "@/lib/constants";
 import { decodeX402PaymentResponse } from "@/lib/utils";
 
 const CDP_BASE_RPC_URL = process.env.CDP_BASE_RPC_URL;
@@ -19,10 +14,7 @@ export async function GET(req: NextRequest) {
   const xPaymentResponse = req.headers.get("x-payment-response");
 
   if (!xPaymentResponse) {
-    return NextResponse.json(
-      { message: "Missing payment response header" },
-      { status: 400 }
-    );
+    return NextResponse.json({ message: "Missing payment response header" }, { status: 400 });
   }
 
   const xPaymentResponseDecoded = decodeX402PaymentResponse(xPaymentResponse);
@@ -40,10 +32,7 @@ export async function GET(req: NextRequest) {
 
   if (!swapQuote.liquidityAvailable) {
     console.error("Swap liquidity not available");
-    return NextResponse.json(
-      { message: "Swap liquidity not available" },
-      { status: 400 }
-    );
+    return NextResponse.json({ message: "Swap liquidity not available" }, { status: 400 });
   }
 
   const swapResult = await x420SmartAccount.swap({
@@ -59,8 +48,7 @@ export async function GET(req: NextRequest) {
     userOpHash: swapResult.userOpHash,
   });
 
-  const swapTransactionHash =
-    receipt.status === "complete" ? receipt.transactionHash : null;
+  const swapTransactionHash = receipt.status === "complete" ? receipt.transactionHash : null;
 
   console.log("swap tx hash", swapTransactionHash);
   const quoteToAmount = swapQuote.toAmount;
@@ -77,8 +65,7 @@ export async function GET(req: NextRequest) {
     userOpHash: sendResult.userOpHash,
   });
 
-  const sendTransactionHash =
-    sendReceipt.status === "complete" ? sendReceipt.transactionHash : null;
+  const sendTransactionHash = sendReceipt.status === "complete" ? sendReceipt.transactionHash : null;
 
   console.log("send tx hash", sendTransactionHash);
 

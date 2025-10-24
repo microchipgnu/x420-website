@@ -8,15 +8,7 @@ export const metadata: Metadata = {
   title: "x420 Token - Calm Your Requests",
   description:
     "Token launched on x402, the internet-native payment protocol. No utility, no financial advice, just calm your requests with x420.",
-  keywords: [
-    "x420",
-    "HTTP 420",
-    "rate limiting",
-    "autonomous systems",
-    "AI agents",
-    "calm protocol",
-    "x402",
-  ],
+  keywords: ["x420", "HTTP 420", "rate limiting", "autonomous systems", "AI agents", "calm protocol", "x402"],
   metadataBase: new URL("https://x420.dev"),
   openGraph: {
     title: "x420 Token - Calm Your Requests",
@@ -47,9 +39,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [{ url: "/favicon.ico", sizes: "any" }],
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/site.webmanifest",
 };

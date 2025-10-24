@@ -1,11 +1,5 @@
 import { CdpClient } from "@coinbase/cdp-sdk";
-import {
-  type Address,
-  encodeFunctionData,
-  erc20Abi,
-  maxUint256,
-  parseUnits,
-} from "viem";
+import { type Address, encodeFunctionData, erc20Abi, maxUint256, parseUnits } from "viem";
 import { PERMIT2_ADDRESS } from "@/lib/constants";
 import type { CdpSmartAccount } from "@/lib/types";
 
@@ -20,13 +14,18 @@ export const cdp = new CdpClient({
   walletSecret: CDP_WALLET_SECRET,
 });
 
-export const getX420SmartAccount = async () => {
-  const resourceWallet = await cdp.evm.getOrCreateAccount({
+export const getX420Account = async () => {
+  const x420Account = await cdp.evm.getOrCreateAccount({
     name: "x420-main",
   });
 
+  return x420Account;
+};
+
+export const getX420SmartAccount = async () => {
+  const x420Account = await getX420Account();
   const resourceSmartAccount = await cdp.evm.getOrCreateSmartAccount({
-    owner: resourceWallet,
+    owner: x420Account,
     name: "x420-main",
   });
 
@@ -96,8 +95,7 @@ export const transferTokenWrapper = async ({
   };
 }): Promise<string | null> => {
   const { to, tokenAddress, tokenDecimals, amount } = transferData;
-  const amountValue =
-    typeof amount === "string" ? parseUnits(amount, tokenDecimals) : amount;
+  const amountValue = typeof amount === "string" ? parseUnits(amount, tokenDecimals) : amount;
 
   const transferCallData = encodeFunctionData({
     abi: erc20Abi,
@@ -132,7 +130,7 @@ export const transferTokenWrapper = async ({
 //     to: x420SmartAccount.owners[0].address,
 //     tokenAddress: WETH_TOKEN_ADDRESS,
 //     tokenDecimals: 18,
-//     amount: parseEther("3"),
+//     amount: parseEther("4.487"),
 //   },
 // });
 

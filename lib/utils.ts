@@ -34,17 +34,11 @@ export type X402PaymentResponse = {
 
 // x402 Utility Functions
 export function decodeX402Payment(base64EncodedPayment: string): X402Payment {
-  const decoded = JSON.parse(
-    Buffer.from(base64EncodedPayment, "base64").toString()
-  );
+  const decoded = JSON.parse(Buffer.from(base64EncodedPayment, "base64").toString());
   return decoded;
 }
 
-export function decodeX402PaymentResponse(
-  base64EncodedResponse: string
-): X402PaymentResponse {
-  const decoded = JSON.parse(
-    Buffer.from(base64EncodedResponse, "base64").toString()
-  );
+export function decodeX402PaymentResponse(base64EncodedResponse: string): X402PaymentResponse {
+  const decoded = JSON.parse(Buffer.from(base64EncodedResponse, "base64").toString());
   return decoded;
 }

@@ -23,11 +23,7 @@ export function EmbeddedChart({
             allowFullScreen
             className="absolute inset-0 h-full w-full border-0"
             loading="lazy"
-            src={
-              type === "dexscreener"
-                ? X420_DEXSCREENER_EMBED_URL
-                : X420_GECKOTERMINAL_EMBED_URL
-            }
+            src={type === "dexscreener" ? X420_DEXSCREENER_EMBED_URL : X420_GECKOTERMINAL_EMBED_URL}
             title="chart"
           />
         </div>
