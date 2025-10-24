@@ -67,9 +67,8 @@ export default function WhitepaperPage() {
             402,{" "}
             <span className="font-bold text-primary">Calm Your Requests</span>{" "}
             repurposes HTTP <span className="font-bold text-primary">420</span>{" "}
-            ("
             <span className="font-semibold text-accent">Enhance Your Calm</span>
-            ") to create a credible protocol for graceful rate limiting and
+            to create a credible protocol for graceful rate limiting and
             throttling. This standard enables AI agents and web services to
             negotiate cooldown periods automatically.
           </p>
