@@ -16,6 +16,7 @@ export const middleware = paymentMiddleware(
         discoverable: true,
         resource: "https://x420.dev/api/puff",
         mimeType: "application/json",
+        maxTimeoutSeconds: 120,
       },
     },
   },

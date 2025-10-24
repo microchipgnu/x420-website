@@ -11,7 +11,7 @@ import { decodeX402PaymentResponse } from "@/lib/utils";
 
 const CDP_BASE_RPC_URL = process.env.CDP_BASE_RPC_URL;
 
-export const maxDuration = 60;
+export const maxDuration = 120;
 
 const BUY_AMOUNT = parseUnits("1", USDC_DECIMALS);
 
