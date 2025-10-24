@@ -117,5 +117,5 @@ export const proxy = paymentMiddleware(
 
 // Configure which paths the middleware should run on
 export const config = {
-  matcher: ["/api/puff/:path*"],
+  matcher: ["/api/puff", "/api/puff/5"],
 };
