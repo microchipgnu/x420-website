@@ -3,7 +3,7 @@ import { paymentMiddleware, type Resource } from "x402-next";
 
 const NEXT_PUBLIC_FACILITATOR_URL = process.env.NEXT_PUBLIC_FACILITATOR_URL;
 const RESOURCE_WALLET_ADDRESS = process.env.RESOURCE_WALLET_ADDRESS;
-const CDP_CLIENT_KEY = process.env.CDP_CLIENT_KEY;
+const CDP_CLIENT_API_KEY = process.env.CDP_CLIENT_API_KEY;
 
 export const middleware = paymentMiddleware(
   RESOURCE_WALLET_ADDRESS as Address,
@@ -26,7 +26,7 @@ export const middleware = paymentMiddleware(
   {
     appName: "x420.dev",
     appLogo: "/favicon-32x32.png",
-    cdpClientKey: CDP_CLIENT_KEY,
+    cdpClientKey: CDP_CLIENT_API_KEY,
   }
 );
 
