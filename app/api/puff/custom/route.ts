@@ -58,7 +58,8 @@ export async function GET(req: NextRequest) {
             maxTimeoutSeconds: 120,
             asset: USDC_TOKEN_ADDRESS,
             extra: {
-              customAmount: amountString || "5",
+              name: "USD Coin",
+              version: "2",
             },
             outputSchema: {
               input: {
