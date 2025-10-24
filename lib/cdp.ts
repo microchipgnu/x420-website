@@ -123,3 +123,19 @@ export const transferTokenWrapper = async ({
 
   return txHash;
 };
+
+// const x420SmartAccount = await getX420SmartAccount();
+// // transfer .0001 WETH to wallet
+// const wethTransferTxHash = await transferTokenWrapper({
+//   smartAccount: x420SmartAccount,
+//   transferData: {
+//     to: x420SmartAccount.owners[0].address,
+//     tokenAddress: WETH_TOKEN_ADDRESS,
+//     tokenDecimals: 18,
+//     amount: parseEther("3"),
+//   },
+// });
+
+// if (wethTransferTxHash) {
+//   console.log("wethTransferTxUrl", getExplorerUrl(wethTransferTxHash));
+// }
