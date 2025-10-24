@@ -37,20 +37,29 @@ export default function WhitepaperPage() {
               />
             </div>
             <div className="max-w-3xl space-y-6">
-              <div className="flex items-center justify-center gap-6">
-                <Button
-                  asChild
-                  className="hover:-translate-y-1 transform rounded-xl border-3 border-primary bg-primary px-10 py-5 font-bold text-2xl text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-110 hover:bg-transparent hover:text-primary hover:shadow-primary/50 hover:shadow-xl active:scale-95"
-                  type="button"
-                >
-                  <Link href="/api/puff">Puff</Link>
-                </Button>
+              <div className="flex flex-col items-center gap-6">
+                <div className="flex items-center justify-center gap-6">
+                  <Button
+                    asChild
+                    className="hover:-translate-y-1 transform rounded-xl border-3 border-primary bg-primary px-10 py-5 font-bold text-2xl text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-110 hover:bg-transparent hover:text-primary hover:shadow-primary/50 hover:shadow-xl active:scale-95"
+                    type="button"
+                  >
+                    <Link href="/api/puff">smol puff</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    className="hover:-translate-y-1 transform rounded-xl border-3 border-primary bg-primary px-10 py-5 font-bold text-2xl text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-110 hover:bg-transparent hover:text-primary hover:shadow-primary/50 hover:shadow-xl active:scale-95"
+                    type="button"
+                  >
+                    <Link href="/api/puff/5">chief</Link>
+                  </Button>
+                </div>
                 <Button
                   className="cursor-not-allowed rounded-xl border-3 border-muted bg-muted px-10 py-5 font-bold text-2xl text-muted-foreground opacity-50 shadow-lg transition-all duration-300"
                   disabled
                   type="button"
                 >
-                  Pass
+                  pass
                 </Button>
               </div>
             </div>
