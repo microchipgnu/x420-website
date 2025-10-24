@@ -1,12 +1,12 @@
 import type { Address } from "viem";
 import { paymentMiddleware, type Resource } from "x402-next";
 
-const NEXT_PUBLIC_FACILITATOR_URL = process.env
-  .NEXT_PUBLIC_FACILITATOR_URL as Resource;
-const RESOURCE_WALLET_ADDRESS = process.env.RESOURCE_WALLET_ADDRESS as Address;
+const NEXT_PUBLIC_FACILITATOR_URL = process.env.NEXT_PUBLIC_FACILITATOR_URL;
+const RESOURCE_WALLET_ADDRESS = process.env.RESOURCE_WALLET_ADDRESS;
+const CDP_CLIENT_KEY = process.env.CDP_CLIENT_KEY;
 
 export const middleware = paymentMiddleware(
-  RESOURCE_WALLET_ADDRESS,
+  RESOURCE_WALLET_ADDRESS as Address,
   {
     "/api/puff": {
       price: "$1",
@@ -20,12 +20,12 @@ export const middleware = paymentMiddleware(
     },
   },
   {
-    url: NEXT_PUBLIC_FACILITATOR_URL,
+    url: NEXT_PUBLIC_FACILITATOR_URL as Resource,
   },
   {
-    appName: "Calm Your Agent",
-    appLogo: "/logo.png",
-    cdpClientKey: process.env.CDP_CLIENT_KEY as string,
+    appName: "x420.dev",
+    appLogo: "/favicon-32x32.png",
+    cdpClientKey: CDP_CLIENT_KEY,
   }
 );
 

@@ -1,50 +1,24 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
-export const metadata: Metadata = {
-  title: "Calm Your Requests - Rate Limiting Protocol",
-  description:
-    "A credible protocol for autonomous agents and web services to negotiate graceful throttling and cooldown periods using HTTP 420.",
-  keywords: [
-    "x420",
-    "HTTP 420",
-    "rate limiting",
-    "autonomous systems",
-    "AI agents",
-    "calm protocol",
-    "x402",
-  ],
-  authors: [{ name: "Calm Your Requests" }],
-  openGraph: {
-    title: "Calm Your Requests",
-    description: "Rate limiting for AI agents via HTTP 420.",
-    url: "https://x420.dev",
-    siteName: "Calm Your Requests",
-    images: [
-      {
-        url: "/cover.png",
-        width: 1200,
-        height: 630,
-        alt: "Calm Your Requests",
-      },
-    ],
-    locale: "en_US",
-    type: "website",
+const FOOTER_LINKS = [
+  { href: "https://x.com/x420yo", label: "x" },
+  {
+    href: "https://clanker.world/clanker/0x68e284F21D04D4D62398C290EC3EF41C97F80b07",
+    label: "clanker",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Calm Your Requests",
-    description: "Rate limiting for AI agents via HTTP 420.",
-    images: ["/cover.png"],
+  {
+    href: "https://www.x402scan.com/recipient/0x93109d14f6665a9c9675290d3cd5a6c07bbafdbd",
+    label: "x402scan",
   },
-  alternates: {
-    canonical: "https://x420.dev",
+  {
+    href: "https://dexscreener.com/base/0x9461ebccb508dcde49e54073bb587fb78e44ccdbcdbfe113c7c77d112e12c370",
+    label: "dexscreener",
   },
-};
+] as const;
 
 export default function WhitepaperPage() {
   return (
@@ -152,6 +126,8 @@ Calm-Token: abcd1234efgh5678`}
           </Card>
         </section>
 
+        <Separator className="my-12 bg-primary/40" />
+
         {/* Closing */}
         <Card className="border-4 border-primary/50 bg-gradient-to-br from-primary/15 via-accent/15 to-secondary/15 p-8">
           <p className="text-balance text-center font-medium text-lg leading-relaxed">
@@ -162,7 +138,7 @@ Calm-Token: abcd1234efgh5678`}
             <span className="font-semibold text-accent">enhance your calm</span>
             .
           </p>
-          <div className="mt-6 text-center font-bold text-5xl text-primary opacity-50">
+          <div className="py-2 text-center font-bold text-5xl text-primary opacity-50">
             420
           </div>
         </Card>
@@ -170,13 +146,29 @@ Calm-Token: abcd1234efgh5678`}
 
       {/* Footer */}
       <footer className="mt-16 border-primary/50 border-t-2 bg-muted/30 py-8">
-        <div className="container mx-auto max-w-4xl px-4">
-          <p className="text-center text-muted-foreground text-sm">
+        <div className="container mx-auto flex max-w-4xl flex-col items-center gap-4 px-4 text-sm">
+          <p className="text-center text-muted-foreground">
             <span className="font-bold text-primary">Calm Your Requests</span> •
             HTTP <span className="font-bold font-mono">420</span> "
             <span className="font-semibold text-accent">Enhance Your Calm</span>
             " • Complementary to x402
           </p>
+          <nav aria-label="External links">
+            <ul className="flex flex-wrap items-center justify-center gap-4 text-muted-foreground text-sm">
+              {FOOTER_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a
+                    className="transition-colors hover:text-primary"
+                    href={link.href}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </footer>
     </div>

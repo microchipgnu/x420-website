@@ -1,17 +1,19 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { type Address, formatUnits } from "viem";
+import { type Address, formatUnits, parseUnits } from "viem";
 import { getX420SmartAccount } from "@/lib/cdp";
 import {
-  BUY_AMOUNT,
+  USDC_DECIMALS,
   USDC_TOKEN_ADDRESS,
   X420_DECIMALS,
   X420_TOKEN_ADDRESS,
 } from "@/lib/constants";
 import { decodeX402PaymentResponse } from "@/lib/utils";
 
-const CDP_BASE_RPC_URL = process.env.CDP_BASE_RPC_URL as string;
+const CDP_BASE_RPC_URL = process.env.CDP_BASE_RPC_URL;
 
 export const maxDuration = 60;
+
+const BUY_AMOUNT = parseUnits("1", USDC_DECIMALS);
 
 export async function GET(req: NextRequest) {
   const xPaymentResponse = req.headers.get("x-payment-response");
