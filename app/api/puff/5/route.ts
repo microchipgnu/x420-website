@@ -1,8 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { type Address, formatUnits, parseUnits } from "viem";
+import { formatUnits, parseUnits } from "viem";
+import { decodeXPaymentResponse } from "x402-fetch";
 import { getX420SmartAccount } from "@/lib/cdp";
 import { USDC_DECIMALS, USDC_TOKEN_ADDRESS, X420_DECIMALS, X420_TOKEN_ADDRESS } from "@/lib/constants";
-import { decodeX402PaymentResponse } from "@/lib/utils";
 
 const CDP_BASE_RPC_URL = process.env.CDP_BASE_RPC_URL;
 
@@ -17,8 +17,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ message: "Missing payment response header" }, { status: 400 });
   }
 
-  const xPaymentResponseDecoded = decodeX402PaymentResponse(xPaymentResponse);
-  const payerAddress = xPaymentResponseDecoded.payer as Address;
+  const xPaymentResponseDecoded = decodeXPaymentResponse(xPaymentResponse);
+  const payerAddress = xPaymentResponseDecoded.payer;
 
   const x420SmartAccount = await getX420SmartAccount();
 

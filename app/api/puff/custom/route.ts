@@ -23,7 +23,7 @@ function createExactPaymentRequirements(
   price: Price,
   network: Network,
   resource: Resource,
-  description = ""
+  description = "",
 ): PaymentRequirements {
   const atomicAmountForAsset = processPriceToAtomicAmount(price, network);
   if ("error" in atomicAmountForAsset) {
@@ -71,9 +71,8 @@ function createExactPaymentRequirements(
   };
 }
 
-// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: this is a server route
 export async function GET(req: NextRequest) {
-  const { verify, settle } = useFacilitator({ url: "https://facilitator.x402.rs" });
+  const { verify, settle } = useFacilitator();
 
   // Extract custom amount from query parameters
   let customAmount: bigint | null = null;
@@ -82,8 +81,8 @@ export async function GET(req: NextRequest) {
   console.log("[GET] Received request at", req.url);
 
   try {
-    const { searchParams } = new URL(req.url);
-    amountString = searchParams.get("amount") || undefined;
+    const { searchParams } = req.nextUrl;
+    const amountString = searchParams.get("amount") || undefined;
 
     if (amountString) {
       // Parse the amount string to USDC (6 decimals)
@@ -119,7 +118,7 @@ export async function GET(req: NextRequest) {
         priceString,
         "base",
         resource,
-        `Buy ${amountString || "5"} USDC worth of X420 tokens`
+        `Buy ${amountString || "5"} USDC worth of X420 tokens`,
       ),
     ];
     console.log("[GET] Payment requirements created:", paymentRequirements[0]);
@@ -140,7 +139,7 @@ export async function GET(req: NextRequest) {
         error: "X-PAYMENT header is required",
         accepts: paymentRequirements,
       },
-      { status: 402 }
+      { status: 402 },
     );
   }
 
@@ -160,7 +159,7 @@ export async function GET(req: NextRequest) {
         error: errorMessage,
         accepts: paymentRequirements,
       },
-      { status: 402 }
+      { status: 402 },
     );
   }
 
@@ -179,7 +178,7 @@ export async function GET(req: NextRequest) {
           accepts: paymentRequirements,
           payer: verificationResponse.payer,
         },
-        { status: 402 }
+        { status: 402 },
       );
     }
 
@@ -190,7 +189,7 @@ export async function GET(req: NextRequest) {
     console.log("[GET] Settlement response:", settleResponse, "Header:", settlementHeader);
 
     // Get payer address from verification response
-    const payerAddress = verificationResponse.payer as Address;
+    const payerAddress = verificationResponse.payer;
     console.log("[GET] Payment verified and settled for payer:", payerAddress);
 
     console.log("[GET] Getting X420 smart account...");
@@ -235,7 +234,7 @@ export async function GET(req: NextRequest) {
     console.log("[GET] Transferring", quoteToAmount.toString(), "X420 tokens to payer:", payerAddress);
     const sendResult = await x420SmartAccount.transfer({
       amount: quoteToAmount,
-      to: payerAddress,
+      to: payerAddress as `0x${string}`,
       token: X420_TOKEN_ADDRESS,
       network: "base",
       paymasterUrl: CDP_BASE_RPC_URL,
@@ -274,7 +273,7 @@ export async function GET(req: NextRequest) {
         error: errorMessage,
         accepts: paymentRequirements,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

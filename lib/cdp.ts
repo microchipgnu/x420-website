@@ -12,7 +12,6 @@ export const cdp = new CdpClient({
   apiKeyId: CDP_API_KEY_ID,
   apiKeySecret: CDP_API_KEY_SECRET,
   walletSecret: CDP_WALLET_SECRET,
-  debugging: process.env.NODE_ENV === "development",
 });
 
 export const getX420Account = async () => {

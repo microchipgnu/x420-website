@@ -38,7 +38,7 @@ export default function WhitepaperPage() {
                     className="hover:-translate-y-1 transform rounded-xl border-3 border-primary bg-primary px-10 py-5 font-bold text-2xl text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-300 hover:scale-110 hover:bg-transparent hover:text-primary hover:shadow-primary/50 hover:shadow-xl active:scale-95"
                     type="button"
                   >
-                    <Link href="/api/puff">smol puff</Link>
+                    <Link href="/api/puff">puff</Link>
                   </Button>
                   <Button
                     asChild

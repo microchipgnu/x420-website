@@ -8,13 +8,23 @@ import { publicClient } from "@/lib/viem";
 
 const CDP_BASE_RPC_URL = process.env.CDP_BASE_RPC_URL;
 
+type ClankerInfo = {
+  name: string;
+  symbol: string;
+  image: string;
+  description: string;
+};
+
 export const deployClankerToken = async ({
   x420SmartAccount,
   deployerAddress,
+  clankerInfo,
 }: {
   x420SmartAccount: CdpSmartAccount;
   deployerAddress: Address;
+  clankerInfo: ClankerInfo;
 }) => {
+  const { name, symbol, image, description } = clankerInfo;
   const x420Account = x420SmartAccount.owners[0];
 
   const walletClient = createWalletClient({
@@ -30,15 +40,15 @@ export const deployClankerToken = async ({
 
   // Deploy the token
   const { waitForTransaction } = await clanker.deploy({
-    name: "x3OH3",
-    symbol: "X3OH3",
+    name,
+    symbol,
     tokenAdmin: deployerAddress,
-    image: "blob:https://web.telegram.org/560e6207-337a-4a5c-b0ed-93407eb1624f",
+    image,
     metadata: {
-      description: "x402 right now",
+      description,
     },
     context: {
-      interface: "Clanker SDK",
+      interface: "x420",
     },
     pool: {
       pairedToken: WETH_ADDRESSES[base.id],
@@ -65,11 +75,11 @@ export const deployClankerToken = async ({
     },
     chainId: base.id,
     vanity: true,
-    sniperFees: {
-      startingFee: 666_777, // 66.6777%
-      endingFee: 41_673, // 4.1673%
-      secondsToDecay: 15, // 15 seconds
-    },
+    // sniperFees: {
+    //   startingFee: 666_777, // 66.6777%
+    //   endingFee: 41_673, // 4.1673%
+    //   secondsToDecay: 15, // 15 seconds
+    // },
   });
 
   if (!waitForTransaction) {
@@ -78,6 +88,6 @@ export const deployClankerToken = async ({
 
   const { address } = await waitForTransaction();
 
-  console.log(`Token deployed at: ${address}`);
-  console.log(`View on Clanker World: https://clanker.world/clanker/${address}`);
+  console.log(`Clanker deployed: https://clanker.world/clanker/${address}`);
+  return address;
 };

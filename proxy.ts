@@ -74,35 +74,42 @@ export const proxy = paymentMiddleware(
         maxTimeoutSeconds: 120,
       },
     },
-    "/api/clank": {
-      price: "$1",
-      network: "base",
-      config: {
-        description: "Deploy a clanker token",
-        discoverable: true,
-        resource: "https://x420.dev/api/clank",
-        inputSchema: {
-          bodyType: "json",
-          bodyFields: {
-            Name: {
-              type: "string",
-              description: "Token name",
-              required: true,
-            },
-            Symbol: {
-              type: "string",
-              description: "Token symbol",
-              required: true,
-            },
-            Image: {
-              type: "string",
-              description: "Image URL (JPEG/PNG) i.e. https://example.com/image.png",
-              required: true,
-            },
-          },
-        },
-      },
-    },
+    // "/api/clank": {
+    //   price: "$1",
+    //   network: "base",
+    //   config: {
+    //     description: "Deploy a clanker token",
+    //     discoverable: true,
+    //     resource: "https://x420.dev/api/clank",
+    //     mimeType: "application/json",
+    //     maxTimeoutSeconds: 120,
+    //     inputSchema: {
+    //       bodyType: "json",
+    //       bodyFields: {
+    //         name: {
+    //           type: "string",
+    //           description: "Token name",
+    //           required: true,
+    //         },
+    //         symbol: {
+    //           type: "string",
+    //           description: "Token symbol",
+    //           required: true,
+    //         },
+    //         image: {
+    //           type: "string",
+    //           description: "Image URL (JPEG/PNG) i.e. https://example.com/image.png",
+    //           required: true,
+    //         },
+    //         description: {
+    //           type: "string",
+    //           description: "Token description (optional)",
+    //           required: false,
+    //         },
+    //       },
+    //     },
+    //   },
+    // },
   },
   facilitator,
   // {
@@ -112,7 +119,7 @@ export const proxy = paymentMiddleware(
     appName: "x420",
     appLogo: "/logo-200x200.png",
     cdpClientKey: CDP_CLIENT_API_KEY,
-  }
+  },
 );
 
 // Configure which paths the middleware should run on
