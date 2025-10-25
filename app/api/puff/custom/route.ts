@@ -12,7 +12,6 @@ const CDP_BASE_RPC_URL = process.env.CDP_BASE_RPC_URL;
 const RESOURCE_WALLET_ADDRESS = process.env.RESOURCE_WALLET_ADDRESS as Address;
 
 // Initialize facilitator
-
 const x402Version = 1;
 
 export const maxDuration = 120;
@@ -42,6 +41,26 @@ function createExactPaymentRequirements(
     payTo: RESOURCE_WALLET_ADDRESS,
     maxTimeoutSeconds: 120,
     asset: asset.address,
+    outputSchema: {
+      input: {
+        type: "http",
+        method: "GET",
+        queryParams: {
+          amount: {
+            type: "string",
+            required: false,
+            description: "Optional amount in USDC (e.g., '10', '10.5', '0.5'). Defaults to 5 if not provided.",
+          },
+        },
+      },
+      output: {
+        message: "string",
+        swapTransactionHash: "string | null",
+        sendTransactionHash: "string | null",
+        x420TokensReceived: "string",
+        usdcAmountPaid: "string",
+      },
+    },
     extra:
       "eip712" in asset
         ? {
@@ -54,7 +73,8 @@ function createExactPaymentRequirements(
 
 // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: this is a server route
 export async function GET(req: NextRequest) {
-  const { verify, settle } = useFacilitator({ url: "https://facilitator.payai.network" });
+  const { verify, settle } = useFacilitator({ url: "https://facilitator.x402.rs" });
+
   // Extract custom amount from query parameters
   let customAmount: bigint | null = null;
   let amountString: string | undefined;
