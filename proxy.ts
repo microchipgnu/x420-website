@@ -6,49 +6,6 @@ import { paymentMiddleware } from "x402-next";
 const RESOURCE_WALLET_ADDRESS = process.env.RESOURCE_WALLET_ADDRESS;
 const CDP_CLIENT_API_KEY = process.env.CDP_CLIENT_API_KEY;
 
-// type X402Response = {
-//   x402Version: number;
-//   error?: string;
-//   accepts?: Array<Accepts>;
-//   payer?: string;
-// };
-
-// type Accepts = {
-//   scheme: "exact";
-//   network: "base";
-//   maxAmountRequired: string;
-//   resource: string;
-//   description: string;
-//   mimeType: string;
-//   payTo: string;
-//   maxTimeoutSeconds: number;
-//   asset: string;
-
-//   // Optionally, schema describing the input and output expectations for the paid endpoint.
-//   outputSchema?: {
-//     input: {
-//       type: "http";
-//       method: "GET" | "POST";
-//       bodyType?: "json" | "form-data" | "multipart-form-data" | "text" | "binary";
-//       queryParams?: Record<string, FieldDef>;
-//       bodyFields?: Record<string, FieldDef>;
-//       headerFields?: Record<string, FieldDef>;
-//     };
-//     output?: Record<string, any>;
-//   };
-
-//   // Optionally, additional custom data the provider wants to include.
-//   extra?: Record<string, any>;
-// };
-
-// type FieldDef = {
-//   type?: string;
-//   required?: boolean | string[];
-//   description?: string;
-//   enum?: string[];
-//   properties?: Record<string, FieldDef>; // for nested objects
-// };
-
 export const proxy = paymentMiddleware(
   RESOURCE_WALLET_ADDRESS as Address,
   {
@@ -83,29 +40,37 @@ export const proxy = paymentMiddleware(
     //     resource: "https://x420.dev/api/clank",
     //     mimeType: "application/json",
     //     maxTimeoutSeconds: 120,
-    //     inputSchema: {
-    //       bodyType: "json",
-    //       bodyFields: {
-    //         name: {
-    //           type: "string",
-    //           description: "Token name",
-    //           required: true,
+    //     outputSchema: {
+    //       input: {
+    //         type: "http",
+    //         method: "GET",
+    //         queryParams: {
+    //           name: {
+    //             type: "string",
+    //             description: "Token name",
+    //             required: true,
+    //           },
+    //           symbol: {
+    //             type: "string",
+    //             description: "Token symbol",
+    //             required: true,
+    //           },
+    //           image: {
+    //             type: "string",
+    //             description: "Image URL (JPEG/PNG) i.e. https://example.com/image.png",
+    //             required: true,
+    //           },
+    //           description: {
+    //             type: "string",
+    //             description: "Token description (optional)",
+    //             required: false,
+    //           },
     //         },
-    //         symbol: {
-    //           type: "string",
-    //           description: "Token symbol",
-    //           required: true,
-    //         },
-    //         image: {
-    //           type: "string",
-    //           description: "Image URL (JPEG/PNG) i.e. https://example.com/image.png",
-    //           required: true,
-    //         },
-    //         description: {
-    //           type: "string",
-    //           description: "Token description (optional)",
-    //           required: false,
-    //         },
+    //       },
+    //       output: {
+    //         success: "boolean",
+    //         message: "string",
+    //         timestamp: "string",
     //       },
     //     },
     //   },
@@ -124,5 +89,5 @@ export const proxy = paymentMiddleware(
 
 // Configure which paths the middleware should run on
 export const config = {
-  matcher: ["/api/puff", "/api/puff/5"],
+  matcher: ["/api/puff", "/api/puff/5", "/api/clank"],
 };

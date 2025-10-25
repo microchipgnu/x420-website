@@ -4,10 +4,21 @@ import { deployClankerToken } from "@/lib/clanker";
 
 export const maxDuration = 120;
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
-    const { name, symbol, image, description } = await req.json();
+    const name = req.nextUrl.searchParams.get("name");
+    const symbol = req.nextUrl.searchParams.get("symbol");
+    const image = req.nextUrl.searchParams.get("image");
+    const description = req.nextUrl.searchParams.get("description") || "";
+
     console.log("Clank route received request with name:", name, "symbol:", symbol, "image:", image);
+
+    if (!name || !symbol || !image) {
+      return NextResponse.json(
+        { error: "Missing required parameters: name, symbol, and image are required" },
+        { status: 400 },
+      );
+    }
 
     const x420SmartAccount = await getX420SmartAccount();
     const clankerAddress = await deployClankerToken({
@@ -22,19 +33,10 @@ export async function POST(req: NextRequest) {
     console.log("Clanker deployed:", clankerAddress);
 
     return NextResponse.json({
-      success: true,
-      message: "Clank route simulated successfully",
-      timestamp: new Date().toISOString(),
+      clankerAddress,
     });
   } catch (error) {
     console.error("Error in clank route:", error);
-    return NextResponse.json(
-      {
-        success: false,
-        error: "Internal server error",
-        details: error instanceof Error ? error.message : "Unknown error",
-      },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
