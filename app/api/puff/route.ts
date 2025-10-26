@@ -8,7 +8,7 @@ const CDP_BASE_RPC_URL = process.env.CDP_BASE_RPC_URL;
 
 export const maxDuration = 120;
 
-const BUY_AMOUNT = parseUnits("5", USDC_DECIMALS);
+const BUY_AMOUNT = parseUnits("1", USDC_DECIMALS);
 
 export async function GET(req: NextRequest) {
   const xPaymentResponse = req.headers.get("x-payment-response");
